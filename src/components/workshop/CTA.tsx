@@ -1,7 +1,11 @@
 
 import { Button } from "@/components/ui/button";
+import SignupForm from "./SignupForm";
+import { useState } from "react";
 
 const CTA = () => {
+  const [showForm, setShowForm] = useState(false);
+
   return (
     <section className="py-16">
       <div className="container mx-auto px-4 text-center">
@@ -9,9 +13,19 @@ const CTA = () => {
         <p className="text-xl mb-8 max-w-2xl mx-auto">
           Sign up now and discover how easy, practical, and fun AI can be! Let's make ChatGPT part of your everyday life — not something to fear.
         </p>
-        <Button size="lg" className="bg-workshop-blue text-gray-800 hover:bg-workshop-blue/90">
-          Reserve Your Spot Today
-        </Button>
+        {!showForm ? (
+          <Button 
+            size="lg" 
+            className="bg-workshop-blue text-gray-800 hover:bg-workshop-blue/90"
+            onClick={() => setShowForm(true)}
+          >
+            Reserve Your Spot Today
+          </Button>
+        ) : (
+          <div className="mt-8">
+            <SignupForm />
+          </div>
+        )}
       </div>
     </section>
   );
